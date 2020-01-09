@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Person from "./components/person";
-//import Details from "./components/details";
+import Details from "./components/details";
 
 class Test extends Component {
   state = {
@@ -29,17 +29,18 @@ class Test extends Component {
       });
   };
 
-  getDetails = () => {
-    fetch(this.state.url)
+  getDetails = detailsURL => {
+    fetch(detailsURL)
       .then(results => results.json())
       .then(dump => {
-        this.setState({ details: dump });
+        this.setState({ details: dump, listView: false });
       });
     console.log(this.state);
   };
 
-  clickHandler = () => {
-    this.setState({ listView: false });
+  clickHandler = sender => {
+    console.log(sender);
+    this.getDetails(sender.url);
   };
 
   increment = nextURL => {
@@ -83,7 +84,17 @@ class Test extends Component {
       return (
         <main>
           <h1>Once upon a time in a galaxy far far away lived...</h1>
-          <div className="list"></div>
+          <div className="list">
+            <Details info={this.state.details} />
+            <div className="controls">
+              <button
+                className="scroll"
+                onClick={() => this.setState({ listView: true })}
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
         </main>
       );
     }

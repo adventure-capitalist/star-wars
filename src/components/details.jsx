@@ -3,15 +3,14 @@ import React, { Component } from "react";
 class Details extends Component {
   render() {
     return (
-      <div>
-        {this.state.details.name} <br /> height: {this.state.details.height}{" "}
+      <div className="largeCard">
+        {this.props.info.name} <br /> height: {this.props.info.height} <br />
+        weight: {this.props.info.mass} <br />
+        hair color: {this.props.info.hair_color} <br />
         <br />
-        weight: {this.state.details.mass} <br />
-        hair color: {this.state.details.hair_color} <br />
+        eye color: {this.props.info.eye_color}
         <br />
-        eye color: {this.state.details.eye_color}
-        <br />
-        skin color: {this.state.details.skin_color}
+        skin color: {this.props.info.skin_color}
         {/* <BackButton onClick={this.props.onClick}></BackButton> */}
       </div>
     );
